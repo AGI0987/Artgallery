@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1> AI-Generated Image</h1>
+    <form id="search-form">
+        <input type="text" id="search-box" placeholder="Search">
+        <button type="submit"><img src="search.png"></button>
+    </form>
+</body>
+</html>
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: linear-gradient(rgba(0,8,51,0.7),rgba(0,8,51,0.7)),url(7.jpeg);
+   } 
+
+h1{
+    text-align: center;
+    margin: 100px auto 50px;
+    font-weight:600 ;
+    color: rgb(145, 112, 145);
+}
+
+form{
+    width:80%;
+    max-width: 700px;
+    margin: auto;
+    height: 60%;
+    background: rgba(225,225, 225,0.2) ;
+    display: flex;
+    align-items: center;
+    border-radius: 60px;
+    padding: 10px;
+    backdrop-filter: blur(4px) saturate(180%);
+}
+
+form input{
+    flex:1;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #cac7ff;
+    font-size: 18px;
+    padding: 0 30px;
+}
+
+button{
+    border: 0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background-color: #58629b;
+    cursor: pointer;
+}
+
+::placeholder{
+    color: #cac7ff;
+}
+
+
+const accessKey = "tLlkVIzY4KE1LIO6iHpfbGDqa2jBdq2gYUEFjrY8qAc";
+
+const searchForm = document.getElementById("search-form");
+const searchBox = document.getElementById("search-box");
+const searchResult = document.getElementById(".search-result");
+const showMoreBtn= document.getElementById("show-more-btn");
+
+
+let keyword = "";
+let page = 1;
+
+async function searchIamges(){
+    keyword = searchBox.value;
+    const url = 'https://api.unsplas.com/search/photos?page=${page}&';
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const results =data.results;
+
+    results.map((result) =>{
+        const image = document.createElement("img");
+        image.src = result.urls.small;
+        const imageLink = document.createElement("a");
+        imageLink.href = result.links.html;
+        imageLink.target = "_blank";
+
+        imageLink.appendChild(image);
+        searchResult.appendChild(imageLink);
+    })
+}
+
+searchForm.addEventListener("submit", (e) =>{
+    e.preventDefault();
+    page = 1;
+    searchIamges();
+})
+
+
+<a href="https://unsplash.com/photos/blue-and-orange-smoke-wQLAGv4_OYs" target="_blank">painting</a>
+
+<a href="C:\Users\devag\OneDrive\Desktop\art\1.jpeg" target="_blank">painting</a>
+
+<a href="C:\Users\devag\OneDrive\Desktop\art\5.jpeg" target="_blank">painting</a>
+
+
+
+
+const searchForm = document.getElementById("search-form");
+const searchBox = document.getElementById("search-box");
+const searchResult = document.getElementById(".search-result");
+const showMoreBtn= document.getElementById("show-more-btn");
